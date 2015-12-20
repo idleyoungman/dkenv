@@ -1,9 +1,9 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"github.com/spf13/viper"
+	"gopkg.in/alecthomas/kingpin.v2"
 	"log"
 	"os"
 )
@@ -16,13 +16,13 @@ func main() {
 	viper.AddConfigPath("$HOME/.dkenv")
 	viper.ReadInConfig()
 
-	version := flag.String("version", "", "Docker Version")
-	list := flag.Bool("list", false, "Docker Version")
-	apiVersion := flag.String("apiVersion", "", "API Version")
+	version := kingpin.Flag("version", "Set Docker version").Short('v').String()
+	list := kingpin.Flag("list", "List downloaded Docker versions").Short('l').Bool()
+	apiVersion := kingpin.Flag("apiVersion", "Set Docker API version").Short('a').String()
+	kingpin.CommandLine.HelpFlag.Short('h')
+	kingpin.Parse()
 
 	var ver string
-
-	flag.Parse()
 
 	if *list {
 		fmt.Println("Versions downloaded:")
@@ -52,8 +52,8 @@ func main() {
 			getDocker(ver, viper.GetString("BinDir"))
 		}
 		switchVersion(ver, viper.GetString("BinDir"))
-
-	} else {
-		flag.Usage()
+		//
+		// } else {
+		// 	flag.Usage()
 	}
 }

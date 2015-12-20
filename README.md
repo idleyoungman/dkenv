@@ -9,9 +9,11 @@ Designed to bypass the dreaded:
 
 Use:
 
-    dkenv -version version
+    dkenv --version version
 
-    dkenv -apiVersion apiVersion
+    dkenv --apiVersion apiVersion
+
+    dkenv --list
 
 Version example: "1.6.0"
 
