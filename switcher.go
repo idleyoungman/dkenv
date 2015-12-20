@@ -40,7 +40,11 @@ func listDownloadedVersions() {
 	fileList, err := ioutil.ReadDir(usr.HomeDir + "/.dkenv")
 
 	for _, file := range fileList {
-		fmt.Println(file)
+		fileName := file.Name()
+		versionName := strings.TrimLeft(fileName, "docker-")
+		if versionName != "" {
+			fmt.Println(versionName)
+		}
 	}
 }
 
