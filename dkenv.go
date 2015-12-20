@@ -52,8 +52,8 @@ func main() {
 			getDocker(ver, viper.GetString("BinDir"))
 		}
 		switchVersion(ver, viper.GetString("BinDir"))
-		//
-		// } else {
-		// 	flag.Usage()
+
+	} else {
+		kingpin.FatalUsage("Must specify a flag")
 	}
 }
